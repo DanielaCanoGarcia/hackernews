@@ -11,7 +11,7 @@ class Query(graphene.ObjectType):
 
     def resolve_all_logs(self, info):
         return APILog.objects.all()
-
+    
 class CreateAPILog(graphene.Mutation):
     class Arguments:
         user = graphene.String()
