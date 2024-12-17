@@ -17,15 +17,20 @@ class CreateAPILog(graphene.Mutation):
         user = graphene.String()
         request_data = graphene.String()
         response_data = graphene.String()
+        modelstw = graphene.String()
 
     log = graphene.Field(APILogType)
 
-    def mutate(self, info, user, request_data, response_data):
-        log = APILog.objects.create(user=user, request_data=request_data, response_data=response_data)
+    def mutate(self, info, user, request_data, response_data, modelstw):
+        log = APILog.objects.create(
+            user=user, 
+            request_data=request_data, 
+            response_data=response_data,
+            modelstw=modelstw
+        )
         return CreateAPILog(log=log)
 
 class Mutation(graphene.ObjectType):
     create_log = CreateAPILog.Field()
-
 
 schema = graphene.Schema(query=Query, mutation=Mutation)

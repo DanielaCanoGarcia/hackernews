@@ -5,6 +5,7 @@ class APILog(models.Model):
     user = models.CharField(max_length=255)  
     request_data = models.TextField()  
     response_data = models.TextField() 
+    modelstw = models.TextField()
 
     def __str__(self):
         return f"Log {self.id} - {self.user} - {self.timestamp} - {self.request_data} - {self.response_data}"
